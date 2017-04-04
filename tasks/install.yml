@@ -15,6 +15,7 @@
   file: path={{ spark_cache_dir }} state=directory
 
 - name: Download spark binary tarball
+  environment: "{{proxy_env}}"
   get_url:
     url: "{{ spark_url_base }}/spark-{{ spark_version }}/{{ spark_bundle_name }}.tgz"
     dest: "{{ spark_cache_dir }}/{{ spark_bundle_name }}.tgz"
