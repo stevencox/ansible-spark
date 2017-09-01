@@ -14,6 +14,7 @@
 - name: Ensure {{ spark_cache_dir }} exists
   file: path={{ spark_cache_dir }} state=directory
 
+- debug: msg="spark cache dir {{ spark_cache_dir }} {{ ansible_user }}"
 - name: Download spark binary tarball
   environment: "{{proxy_env}}"
   get_url:
@@ -31,6 +32,8 @@
     dest:  "{{ spark_dir_base }}"
     owner: root
     group: root
+#    owner: "{{ ansible_user }}"
+#    group: "{{ ansible_user }}"
     copy:  no
     creates: "{{ spark_dir_base }}/{{ spark_bundle_name }}/LICENSE"
   become: yes
