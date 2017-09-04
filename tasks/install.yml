@@ -49,6 +49,4 @@
   template: src=spark-env.sh.j2 dest={{ spark_dir_base }}/spark/conf/spark-env.sh
 
 - name: Copy quieter logging properties
-  copy:
-    src: "{{ role_path }}/templates/log4j.properties"
-    dest: "{{ spark_dir_base }}/spark/conf"
+  template: src=log4j.properties.j2 dest="{{ spark_dir_base }}/spark/conf"
